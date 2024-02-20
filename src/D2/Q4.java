@@ -58,6 +58,52 @@ package D2;
 //----------------
 //24
 
-public class Q4 {
+import java.util.Scanner;
 
+public class Q4 {
+    public static void main(String[] args){
+//        Scanner sc= new Scanner(System.in);
+//        long n  = sc.nextInt();
+        long n = 432532;
+        long s =0, e = ((int) Math.sqrt(n)) + 1, m;
+        while(s<e){
+            m = s+(e-s)/2;
+            long areaM = area(m);
+            // System.out.println(m+" "+areaM);
+            if(m==n) {
+                e=m;
+                break;
+            } else if (areaM<n){
+                s=m+1;
+            } else {
+                e=m;
+            }
+        }
+        System.out.println(perimeter(e));
+        // System.out.println(area(n));
+    }
+
+    // recursive way
+    // all numbers counted 8x except mid and corner
+    // O(n)
+//    static long area(long n) {
+//        if(n==0) return 0;
+//        long current = 0;
+//        long limit = n*2;
+//        for(long i=n; i<=limit; i++){
+//            current+=8*i;
+//        }
+//        current = current - 4*n - 4*limit;
+//        return current + area(n-1);
+//    }
+
+    // O(1)
+    // formula given
+    static long area(long n){
+        return (long) (4*Math.pow(n, 3) + 6*Math.pow(n, 2) + 2*n);
+    }
+
+    static long perimeter(long n){
+        return 8*n;
+    }
 }
